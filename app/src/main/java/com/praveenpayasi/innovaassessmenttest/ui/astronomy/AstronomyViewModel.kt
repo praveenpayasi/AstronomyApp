@@ -45,6 +45,17 @@ class AstronomyViewModel @Inject constructor(
         }
     }
 
+    fun checkForDataWithErrorMsg() : Boolean {
+        var show = false
+        if (!checkInternetConnection() && !astronomyRepository.isTodaysAstro()){
+            show = true
+        }
+        if (!checkInternetConnection() && astronomyRepository.isTodaysAstro()){
+            show = true
+        }
+        return show
+    }
+
     private fun fetchAstronomyFromPref() {
         viewModelScope.launch(Dispatchers.Main) {
             astronomyRepository.getAstronomyFromPref()

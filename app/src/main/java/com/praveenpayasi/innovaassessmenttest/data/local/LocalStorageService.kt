@@ -2,6 +2,8 @@ package com.praveenpayasi.innovaassessmenttest.data.local
 
 import android.content.SharedPreferences
 import com.google.gson.Gson
+import com.praveenpayasi.innovaassessmenttest.data.model.Astronomy
+import com.praveenpayasi.innovaassessmenttest.utils.DateComparison
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -32,5 +34,16 @@ class LocalStorageService constructor(
         if (obj != null) {
             emit(obj)
         }
+    }
+
+    fun getDateFromStoredJson(): String {
+        val jsonString = appSharedPref.getString(KEY_ASTRONOMY, null)
+        val myData: Astronomy = gson.fromJson(jsonString, Astronomy::class.java)
+        return (myData.date)
+    }
+
+    fun isTodaysAstronomy(): Boolean {
+        val storedAstronomyDate = getDateFromStoredJson()
+        return DateComparison.isTodaysAstronomy(storedAstronomyDate)
     }
 }

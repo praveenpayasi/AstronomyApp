@@ -11,7 +11,8 @@ import javax.inject.Singleton
 @Singleton
 class AstronomyRepository @Inject constructor(
     private val networkService: NetworkService,
-    private val localStorageService: LocalStorageService) {
+    private val localStorageService: LocalStorageService
+) {
 
     fun getAstronomyFromRemote(): Flow<Astronomy> {
         return flow {
@@ -27,6 +28,8 @@ class AstronomyRepository @Inject constructor(
         return localStorageService.saveAstronomy(astronomy)
     }
 
-
+    fun isTodaysAstro(): Boolean {
+        return localStorageService.isTodaysAstronomy()
+    }
 
 }

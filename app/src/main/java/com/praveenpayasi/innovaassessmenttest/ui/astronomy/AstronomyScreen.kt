@@ -1,5 +1,6 @@
 package com.praveenpayasi.innovaassessmenttest.ui.astronomy
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -18,7 +19,9 @@ fun AstronomyRoute(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Column {
-        AstronomyScreen(uiState, onRetryClick = {
+        val show = viewModel.checkForDataWithErrorMsg()
+        Log.d("show Astronomy ","$show")
+        AstronomyScreen(uiState, show, onRetryClick = {
             viewModel.startFetchingAstronomy()
         })
     }
@@ -27,10 +30,10 @@ fun AstronomyRoute(
 
 
 @Composable
-fun AstronomyScreen(uiState: UiState<Astronomy>, onRetryClick: () -> Unit) {
+fun AstronomyScreen(uiState: UiState<Astronomy>, show : Boolean, onRetryClick: () -> Unit) {
     when (uiState) {
         is UiState.Success -> {
-            Astronomy(uiState.data)
+            Astronomy(uiState.data,show)
         }
 
         is UiState.Loading -> {

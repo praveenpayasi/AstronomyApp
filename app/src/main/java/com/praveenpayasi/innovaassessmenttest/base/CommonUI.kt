@@ -104,7 +104,7 @@ fun ShowError(text: String, retryClicked: () -> Unit = {}) {
 }
 
 @Composable
-fun Astronomy(astronomy: Astronomy) {
+fun Astronomy(astronomy: Astronomy, show: Boolean) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -113,6 +113,22 @@ fun Astronomy(astronomy: Astronomy) {
         AstronomyImage(astronomy)
         AstronomyTitle(astronomy.title)
         ExplainationText(astronomy.explanation)
+        SuccessDataWithErrorMsg(show)
+    }
+
+}
+
+@Composable
+fun SuccessDataWithErrorMsg(show: Boolean) {
+    if (show) {
+        Text(
+            text = stringResource(R.string.error_msg_previous_data_shown),
+            style = MaterialTheme.typography.titleMedium,
+            color = Color.Red,
+            fontSize = 23.sp,
+            modifier = Modifier
+                .padding(top = 4.dp, start = 4.dp, end = 4.dp, bottom = 4.dp)
+        )
     }
 
 }
@@ -124,7 +140,7 @@ fun AstronomyImage(astronomy: Astronomy) {
         contentDescription = astronomy.title,
         contentScale = ContentScale.Crop,
         modifier = Modifier
-            .height(250.dp)
+            .height(200.dp)
             .fillMaxWidth()
     )
 }

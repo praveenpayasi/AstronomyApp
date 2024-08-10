@@ -9,3 +9,4 @@ data class Astronomy(
     val title: String,
     val url: String
 )
+
