@@ -1,5 +1,6 @@
 package com.praveenpayasi.innovaassessmenttest.base
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -104,9 +105,10 @@ fun ShowError(text: String, retryClicked: () -> Unit = {}) {
 
 @Composable
 fun Astronomy(astronomy: Astronomy) {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxWidth()
+            .background(Color.White)
     ) {
         AstronomyImage(astronomy)
         AstronomyTitle(astronomy.title)
@@ -122,7 +124,7 @@ fun AstronomyImage(astronomy: Astronomy) {
         contentDescription = astronomy.title,
         contentScale = ContentScale.Crop,
         modifier = Modifier
-            .height(200.dp)
+            .height(250.dp)
             .fillMaxWidth()
     )
 }

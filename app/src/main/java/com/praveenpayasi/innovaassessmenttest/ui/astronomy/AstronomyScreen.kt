@@ -18,14 +18,16 @@ fun AstronomyRoute(
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     Column {
-        AstronomyScreen(uiState)
+        AstronomyScreen(uiState, onRetryClick = {
+            viewModel.startFetchingAstronomy()
+        })
     }
 
 }
 
 
 @Composable
-fun AstronomyScreen(uiState: UiState<Astronomy>) {
+fun AstronomyScreen(uiState: UiState<Astronomy>, onRetryClick: () -> Unit) {
     when (uiState) {
         is UiState.Success -> {
             Astronomy(uiState.data)
@@ -36,7 +38,9 @@ fun AstronomyScreen(uiState: UiState<Astronomy>) {
         }
 
         is UiState.Error -> {
-            ShowError(uiState.message)
+            ShowError(uiState.message) {
+                onRetryClick()
+            }
         }
     }
 }
