@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">InnovaAssessmentTest</string>
+    <string name="error_title">Ooops,</string>
+    <string name="error_description">Something went wrong, Lets try\n come more again</string>
+    <string name="try_again">TRY AGAIN</string>
+    <string name="loading">Loading</string>
+    <string name="proceed">Proceed</string>
+    <string name="data_not_found">Data Not Found.</string>
+    <string name="error_msg_previous_data_shown">We are not connected to the internet, showing you the last image we have.</string>
 </resources>
